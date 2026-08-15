@@ -18,6 +18,11 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
+    - name: Setup Gradle Wrapper automatically
+      run: |
+        mkdir -p gradle/wrapper
+        wget https://raw.githubusercontent.com/gradle/gradle/v2.14/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
