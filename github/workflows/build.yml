@@ -18,16 +18,14 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
 
-    - name: Setup Gradle Wrapper automatically
+    - name: Install Gradle 2.14.1
       run: |
-        mkdir -p gradle/wrapper
-        wget https://raw.githubusercontent.com/gradle/gradle/v2.14/gradle/wrapper/gradle-wrapper.jar -O gradle/wrapper/gradle-wrapper.jar
+        wget https://services.gradle.org/distributions/gradle-2.14.1-bin.zip
+        unzip -q gradle-2.14.1-bin.zip
+        echo "$PWD/gradle-2.14.1/bin" >> $GITHUB_PATH
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Build Mod
+      run: gradle build
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
